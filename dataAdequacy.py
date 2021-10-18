@@ -15,6 +15,11 @@ def dataAdequacy(path):
         df = df.applymap(lambda s: success_dict.get(s) if s in success_dict else s)
         df[["success"]] = df[["success"]].apply(pd.to_numeric)
 
+        #df = df.drop(df[df['V1']!="Non HTTP response code: org.apache.http.NoHttpResponseException"].index)
+        #df = df.drop(df[df['V1']=="Non HTTP response code: org.apache.http.conn.HttpHostConnectException"].index)
+        #df.groupby("V1").agg(frecuency=("V1","count"))
+        #df['V1'] = df['V1'].astype(int)
+
         #Renombramos las columnas
         df = df.rename(columns={'elapsed':'VO','responseCode':'V1','success':'V2','bytes':'V3','sentBytes':'V4','allThreads':'V5', 'Latency':'V6','Connect':'V7','Result':'V8'})
 
